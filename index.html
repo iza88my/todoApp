@@ -80,7 +80,7 @@
     })
         .then((response) => response.json())
         .then((body)=>{
-          // convert list kpd list of html elements
+          // convert list todo items kpd list of html elements (in array of string)
           const todoList = body.entry.map((todo) =>(
             `<div class="pt-1 d-flex justify-content-between">
                 ${todo.details}
@@ -91,8 +91,8 @@
                 </div>
             </div> `    
           ))
-          // render list of html elements kps innerHTML dlm #todoList
-          document.getElementById ('todoList').innerHTML = todoList.join("")
+          // render list of html elements kpd innerHTML dlm #todoList
+          document.getElementById ('todoList').innerHTML = todoList.join('')
         })
         .catch((err)=>{debugger})
 
@@ -102,6 +102,7 @@
         //listen pd event onclick punye button 'add'
         //bile onclick button, dptkn value dr input
         function onSubmit() {
+          
           const inputValue = document.getElementById ('todoInput').value
           console.log (inputValue)
         }
@@ -110,16 +111,16 @@
           fetch("https://api.kelasprogramming.com/todo",{
             method: 'POST',
             headers: {
-              "Content-type": "application/json",
+              "Content-Type": "application/json",
               "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5rZWxhc3Byb2dyYW1taW5nLmNvbS50ZXN0Iiwic3ViIjoiNWRiZWI4ZWItY2I5OC01MGVlLTk0NDctN2U0NzI4N2ZhODY4IiwiaWF0IjoxNzIxMDI2ODQxLCJleHAiOjE3MjExOTk2NDEsIm5hbWUiOiJpemFkeSJ9.KQCVEhTnWXdSngHxDhbca22ATNKsp_Lc7ql34RoidFo"
             },
-            body: JSON.stringify({
+            body: JSON.stringify ({
               "details" : inputValue
             })
           })
           .then((response) => response.json())
           .then(body => {debugger})
-          .then(err => {debugger})
+          .catch(err => {debugger})
 
 
         //bile dah success --> refetch all todo items & clearkn input box
