@@ -104,9 +104,7 @@
         function onSubmit() {
           
           const inputValue = document.getElementById ('todoInput').value
-          console.log (inputValue)
-        }
-        
+    
         //buat post request utk create
           fetch("https://api.kelasprogramming.com/todo",{
             method: 'POST',
@@ -121,7 +119,7 @@
           .then((response) => response.json())
           .then(body => {debugger})
           .catch(err => {debugger})
-
+        }
 
         //bile dah success --> refetch all todo items & clearkn input box
         //klu fail --> klua alert & x clearkn input
