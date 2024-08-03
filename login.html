@@ -41,7 +41,7 @@
               Remember me
             </label>
           </div>
-          <div class="btn btn-primary w-100 py-2" type="submit"  onclick="onSubmit()">Sign in</div>
+          <div class="btn btn-primary w-100 py-2" type="submit"  onclick="onSubmit()">Login</div>
         </form>
       </div>
     </div>
@@ -51,38 +51,39 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script>
-      // onclick submit, kita hantar post request utk login
+      // if onclick submit, will send post request utk login
       // kita dapatkan value username
       // kita dapatkan value password
-      
-      // kita buat http request utk login
-      // onsuccess
-      // 1) kita akan save token dan refresh token dekat dalam browser
-      // 2) kita redirect user ke index
       function onSubmit(){
-        const username = document.getElementById('usernameInput').value
-        const password = document.getElementById('passwordInput').value
+        const username = document.getElementById ('usernameInput').value
+        const password = document.getElementById ('passwordInput').value
         console.log(`username ${username}, password ${password}`)
 
-        fetch('https://api.kelasprogramming.com/consumer/login', {
-            method: 'POST',
-            headers: {
-              "Content-type": "application/json"
-            },
-            body: JSON.stringify({
-              "username": username,
-              "password": password
-            })
+
+        fetch('https://api.kelasprogramming.com/consumer/login')
+          method: 'POST',
+          headers:{
+            "Content-type":"application/json"
+          },
+          body: JSON.stringnify({
+            "username": username,
+            "password": password
           })
-          .then(res => res.json())
-          .then(body => {
-            localStorage.setItem('todoJWTtoken', body.token)
-            localStorage.setItem('todoRefreshToken', body.refresh_token)
-            window.location.href = './index.html'
-          })
-          .catch(err => {debugger})
+          .then(res =>res.json())
+          .then(body =>{debugger}) //listen debugger
+          .catch(err =>{debugger}) //if ade error then catch
       }
 
+      // kita dapatkan value username
+      // kita dapatkan value password
+      // kita buat http request utk login
+
+      // if success: --->
+      // 1) kita akan save token dan refresh token dekat dalam browser
+      // 2) kita redirect user ke index
+      // if error: ----> will display error
+      
+       
       // onerror, kita display error
     </script>
   </body>
